@@ -95,3 +95,77 @@ function myFunction11_3_4(){
 
   calendar.createEvent(title, startTime, endTime, options)
 }
+
+
+// CalendarEvent クラス
+function myFunction11_4_1(){
+  const id = 'kt2lage@gmail.com'
+  const calendar = CalendarApp.getCalendarById(id)
+  const date = new Date('2022/7/24')
+  const event = calendar.getEventsForDay(date)[0]
+
+  console.log(event.getTitle())
+  console.log(event.getStartTime())
+  console.log(event.getEndTime())
+  console.log(event.getLocation())
+  console.log(event.getDescription())
+
+  console.log(event.getId())
+  console.log(event.isAllDayEvent())
+  console.log(event.isOwnedByMe())
+
+  console.log(event.getCreators())
+  console.log(event.getOriginalCalendarId())
+  console.log(event.getLastUpdated())
+}
+
+// イベントIDとイベントの取得
+function myFunction11_4_2(){
+  const id = 'kt2lage@gmail.com'
+  const calendar = CalendarApp.getCalendarById(id)
+  const date = new Date('2022/7/24')
+  const event = calendar.getEventsForDay(date)[0]
+  const iCalId = event.getId()
+
+  const eventById = calendar.getEventById(iCalId)
+  console.log(eventById.getTitle())
+}
+
+// // イベントの色を設定する
+function myFunction11_4_3(){
+  const id = 'kt2lage@gmail.com'
+  const calendar = CalendarApp.getCalendarById(id)
+
+  const title ='皮膚科'
+  const startTime = new Date('2022/7/31 10:00')
+  const endTime = new Date('2022/7/31 11:00')
+  const options = {
+    description: '薬指に移った',
+    location: '牛込パーククリニック'
+  }
+
+  const event = calendar.createEvent(title, startTime, endTime, options)
+  console.log(event.getColor()) // デフォルトは色は空文字
+
+  event.setColor(CalendarApp.EventColor.BLUE)
+  console.log(event.getColor())
+}
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
